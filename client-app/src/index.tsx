@@ -4,10 +4,14 @@ import './app/layout/styles.css';
 import 'semantic-ui-css/semantic.min.css';
 import App from './app/layout/App';
 import reportWebVitals from './features/reportWebVitals';
+import { store, storeContext as StoreContext } from './app/stores/store';
 
 ReactDOM.render(
-    <App />,
+  <StoreContext.Provider value={store} >
+    <App />
+  </StoreContext.Provider>,
   document.getElementById('root')
+  
 );
 
 // If you want to start measuring performance in your app, pass a function
