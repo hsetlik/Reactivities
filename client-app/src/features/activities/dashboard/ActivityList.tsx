@@ -4,6 +4,7 @@ import { Activity } from "../../../app/models/activity";
 import { useStore } from "../../../app/stores/store";
 import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom'
+import ActivityListItem from "./ActivityListItem";
 
 
 export default observer(function ActivityList() {
@@ -18,32 +19,9 @@ export default observer(function ActivityList() {
     return (
        <Segment>
            <Item.Group divided>
-               {
-                   activitiesByDate.map(activity => (
-                    <Item key={activity.id}>
-                        <Item.Content>
-                            <Item.Header as='a'>{activity.title}</Item.Header>
-                            <Item.Meta>{activity.date}</Item.Meta>
-                            <Item.Description>
-                                <div>{activity.description}</div>
-                                <div>{activity.city}, {activity.venue}</div>
-                            </Item.Description>
-                            <Item.Extra>
-                                <Button as={Link} to={`/activities/${activity.id}`} floated='right' content='View' color='blue' />
-                                <Button 
-                                    name={activity.id}
-                                    loading={loading && target === activity.id}
-                                    onClick={ (e) => handleActivityDelete(e, activity)}
-                                    floated='right'
-                                    color='red'
-                                    content='Delete'
-                                />
-                                <Label basic content={activity.category} />
-                            </Item.Extra>
-                        </Item.Content>
-                    </Item>
-                   ))
-                }
+               {activitiesByDate.map(activity => (
+                   <ActivityListItem activity={activity} />
+                ))}
            </Item.Group>
        </Segment>
     )
