@@ -6,16 +6,18 @@ import 'semantic-ui-css/semantic.min.css';
 import App from './app/layout/App';
 import reportWebVitals from './features/reportWebVitals';
 import { store, storeContext as StoreContext } from './app/stores/store';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+
+export const appHistory = createBrowserHistory();
 
 ReactDOM.render(
   <StoreContext.Provider value={store} >
-    <BrowserRouter >
-    <App />
-    </BrowserRouter>
+    <Router history={appHistory} >
+      <App />
+    </Router>
   </StoreContext.Provider>,
   document.getElementById('root')
-  
 );
 
 // If you want to start measuring performance in your app, pass a function
