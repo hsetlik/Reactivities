@@ -23,6 +23,8 @@ namespace Persistence
 
             builder.Entity<ActivityAttendee>(x => x.HasKey(aa => new {aa.AppUserId, aa.ActivityId}));
 
+            //map the two foreign keys (AppUserId & ActivityId) onto the ActivityAttendee table
+
             builder.Entity<ActivityAttendee>()
             .HasOne(u => u.AppUser)
             .WithMany(a => a.Activities)
