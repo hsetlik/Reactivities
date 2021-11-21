@@ -34,6 +34,7 @@ namespace Persistence
             .HasOne(u => u.Activity)
             .WithMany(a => a.Attendees)
             .HasForeignKey(aa => aa.ActivityId);
+            
         }
     }
 }

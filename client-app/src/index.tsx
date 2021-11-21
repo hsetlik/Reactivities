@@ -7,16 +7,16 @@ import 'react-datepicker/dist/react-datepicker.css';
 import App from './app/layout/App';
 import reportWebVitals from './features/reportWebVitals';
 import { store, storeContext as StoreContext } from './app/stores/store';
-import { Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 export const appHistory = createBrowserHistory();
 
 ReactDOM.render(
   <StoreContext.Provider value={store} >
-    <Router history={appHistory} >
-      <App />
-    </Router>
+    <BrowserRouter >
+        <App />
+    </BrowserRouter>
   </StoreContext.Provider>,
   document.getElementById('root')
 );

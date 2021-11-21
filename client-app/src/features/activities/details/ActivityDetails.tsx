@@ -14,7 +14,7 @@ import ActivityDetailedSidebar from "./ActivityDetailedSidebar";
 export default observer(function ActivityDetails() {
     const {activityStore} = useStore();
     const {selectedActivity: activity, loadActivity, loadingInitial} = activityStore;
-    const {id} = useParams<{id: string}>();
+    const {id} = useParams();
     useEffect(() => {
         if (id) loadActivity(id);
     }, [id, loadActivity]);

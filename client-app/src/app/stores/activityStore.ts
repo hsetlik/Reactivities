@@ -14,8 +14,14 @@ export default class ActivityStore {
     }
 
     get activitiesByDate() {
-        return Array.from(this.activityRegistry.values()).sort((a, b) => a.date!.getTime() - b.date!.getTime());
+        
+        const arr = Array.from(this.activityRegistry.values()).sort((a, b) => a.date!.getTime() - b.date!.getTime());
+        for (const activity of arr) {
+            console.log(`Activity: ${activity.title}`);
+        }
+        return arr;
     }
+
 
     get groupedActivitied() {
         return Object.entries(

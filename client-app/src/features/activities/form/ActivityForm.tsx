@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button,  Segment } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import { observer} from 'mobx-react-lite';
-import { useParams, Link, useHistory } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import LoadingComponent from "../../../app/layout/LoadingComponents";
 import {v4 as uuid} from 'uuid';
 import { Formik, Form } from "formik";
@@ -18,9 +18,9 @@ import { Activity } from "../../../app/models/activity";
 
 export default observer(function ActivityForm() {
     const {activityStore} = useStore();
-    const history = useHistory();
+    const navigate = useNavigate();
     const {createActivity, updateActivity, loading, loadActivity, loadingInitial} = activityStore;
-    const {id} = useParams<{id: string}>();
+    const {id} = useParams();
     const[activity, setActivity] = useState<Activity>({
         id: "",
         title: "",
@@ -52,11 +52,11 @@ export default observer(function ActivityForm() {
                 id: uuid()
             }
             createActivity(newActivity).then(() => {
-                history.push(`/activities/${newActivity.id}`);
+                navigate(`/activities/${newActivity.id}`);
             })
         } else {
             updateActivity(activity).then(() => {
-                history.push(`/activities/${activity.id}`);
+                navigate(`/activities/${activity.id}`);
             })
         }
         console.log("Submitting form changes...");
