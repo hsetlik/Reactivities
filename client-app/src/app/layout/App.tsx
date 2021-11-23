@@ -19,6 +19,7 @@ import { NavLink } from 'react-router-dom';
 
 
 function App() {
+  const location = useLocation();
   const {commonStore, userStore} = useStore();
 
   useEffect(() => {
@@ -43,6 +44,8 @@ function App() {
             <Routes>
               <Route path='/activities' element={<ActivityDashboard />} />
               <Route path={'/activities/:id'} element={<ActivityDetails />} />
+              <Route key={location.key} path={'/manage/:id'} element={<ActivityForm />} />
+              <Route key={location.key} path={'/createActivity'} element={<ActivityForm />} />
               <Route path='/errors' element={<TestErrors />} />
               <Route path='/server-error' element={<ServerError />} />
               <Route path='/login' element={<LoginForm />} />
