@@ -26,7 +26,7 @@ namespace Application.ActivitiesFeature
 
         public bool IsCancelled { get; set; }
         
-        public ICollection<Profile> Attendees { get; set; }
+        public ICollection<AttendeeDto> Attendees { get; set; }
         //Note: this contains all the properties of 'Activity' except the attendee list
     }
 }
