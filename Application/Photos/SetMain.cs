@@ -37,8 +37,14 @@ namespace Application.Photos
                 if (photo == null)
                     return Result<Unit>.Failure("Photo not found");
                 var currentMain = user.Photos.FirstOrDefault(p => p.IsMain);
-                if (currentMain == null)
+                if (currentMain != null)
+                {
                     currentMain.IsMain = false;
+                }
+                else
+                {
+                    return Result<Unit>.Failure("No existing main photo");
+                }
                 photo.IsMain = true;
                 var success = await _context.SaveChangesAsync() > 0;
                 if (!success)

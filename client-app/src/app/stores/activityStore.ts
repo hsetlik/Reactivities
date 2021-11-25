@@ -154,8 +154,7 @@ export default class ActivityStore {
            await agent.Activities.attend(this.selectedActivity!.id); 
            runInAction(() => {
                if (this.selectedActivity?.isGoing) {
-                   this.selectedActivity!.attendees = this.selectedActivity?.attendees?.
-                   filter(att => att.username !== user?.username);
+                   this.selectedActivity!.attendees = this.selectedActivity?.attendees?.filter(att => att.username !== user?.username);
                    this.selectedActivity.isGoing = false;
                } else {
                    const attendee = new Profile(user!);
